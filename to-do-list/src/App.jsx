@@ -3,32 +3,31 @@ import { useState } from 'react';
 //Creamos la funcion App, que es la funcion principal de la aplicacion
 function App() {
 
-//Creamos estado para gurdar la tarea
-const [task, setTask] = useState('');
-const [tasks, setTasks] = useState([]); //pregunta
+  //Creamos estado para guardar la tarea
+  const [task, setTask] = useState('');
+  const [tasks, setTasks] = useState([]);
 
+  //funcion para manejar el evento de agregar una tarea
+  const handleAddTask = () => {
+    if (task.trim() === '') return;
 
-//funcion para manejar el evento de agregar una tarea
-const handleAddTask = () => {
-  if (task.trim() === '') return;
+    const newTask = {
+      id: Date.now(),
+      text: task,
+    };
 
- // Funcion para filtrar las tareas para eliminar la tarea con el id correspondiente
-const taskDelete = (id) => {
-  const newTasks = tasks.filter(task=> task.id !== id);
-  setTasks(newTasks);
-  console.log(newTasks);
-}
+    //Agregamos la nueva tarea al estado de tareas
+    setTasks([...tasks, newTask]);
+    console.log(newTask);
+    setTask('');
+  }; // <-- Closing bracket added here
 
-  const newTask = {
-    id: Date.now(),
-    text: task,
+  // Funcion para filtrar las tareas para eliminar la tarea con el id correspondiente
+  const handleDelete = (id) => {
+    const newTasks = tasks.filter(task => task.id !== id);
+    setTasks(newTasks);
+    console.log(newTasks);
   };
-  //Agregamos la nueva tarea al estado de tareas
-  setTasks([...tasks, newTask]);
-  console.log(newTask);
-  setTask(''); 
-
-}
 
   return (
     <div className="app-container">
@@ -37,16 +36,16 @@ const taskDelete = (id) => {
         type="text" 
         placeholder="Escribe una tarea"
         value={task}
-        onChange = {(e) => setTask(e.target.value)}
+        onChange={(e) => setTask(e.target.value)}
       />
       <button onClick={handleAddTask}>add task</button>
       <ul>
         {tasks.map((task) => (
           <li key={task.id}>
             {task.text}
-            <button> Eliminar </button>
-            </li>
-      ))}
+            <button onClick={() => handleDelete(task.id)}> Eliminar </button>
+          </li>
+        ))}
       </ul>
     </div>
   );
