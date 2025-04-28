@@ -1,4 +1,6 @@
 import { useState } from 'react';
+import React from 'react';
+
 
 //Creamos la funcion App, que es la funcion principal de la aplicacion
 function App() {
@@ -6,6 +8,11 @@ function App() {
   //Creamos estado para guardar la tarea
   const [task, setTask] = useState('');
   const [tasks, setTasks] = useState([]);
+
+
+  //Creamos estado de editar una tarea
+  const [ editTaskId, setEditTaskId] = useState(null);
+  const [ editTaskText, setEditTaskText] = useState('');
 
   //funcion para manejar el evento de agregar una tarea
   const handleAddTask = () => {
@@ -20,7 +27,7 @@ function App() {
     setTasks([...tasks, newTask]);
     console.log(newTask);
     setTask('');
-  }; // <-- Closing bracket added here
+  }; 
 
   // Funcion para filtrar las tareas para eliminar la tarea con el id correspondiente
   const handleDelete = (id) => {
@@ -28,6 +35,25 @@ function App() {
     setTasks(newTasks);
     console.log(newTasks);
   };
+
+  // Funcion para editar una tarea
+  const editTask = (task) => {
+    setEditTaskId(task.id);
+    setEditTaskText(task.text);
+  };
+
+  // Funcion para guardar la tarea editada
+  const saveEdit = (id) => {
+    const updatedTasks = tasks.map((task) => 
+      task.id === id ? { ...task, text: editTaskText } : task
+    );
+  
+    setTasks(updatedTasks);
+    setEditTaskId(null);
+    setEditTaskText('');
+    console.log(updatedTasks);
+  };
+  
 
   return (
     <div className="app-container">
@@ -41,9 +67,20 @@ function App() {
       <button onClick={handleAddTask}>add task</button>
       <ul>
         {tasks.map((task) => (
-          <li key={task.id}>
-            {task.text}
-            <button onClick={() => handleDelete(task.id)}> Eliminar </button>
+          <li key={task.id} onDoubleClick={() => editTask(task)}>
+            {editTaskId === task.id ? (
+              <input
+                value={editTaskText}
+                onChange={(e) => setEditTaskText(e.target.value)}
+                onBlur={() => saveEdit(task.id)}
+                autoFocus
+              />
+            ) : (
+              <>
+                {task.text}
+                <button onClick={() => handleDelete(task.id)}> Eliminar </button>
+              </>
+            )}
           </li>
         ))}
       </ul>
