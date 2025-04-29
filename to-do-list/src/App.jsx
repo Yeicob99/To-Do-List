@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import React from 'react';
-
+import TaskItem from './components/TaskItem';
 
 //Creamos la funcion App, que es la funcion principal de la aplicacion
 function App() {
@@ -67,21 +67,16 @@ function App() {
       <button onClick={handleAddTask}>add task</button>
       <ul>
         {tasks.map((task) => (
-          <li key={task.id} onDoubleClick={() => editTask(task)}>
-            {editTaskId === task.id ? (
-              <input
-                value={editTaskText}
-                onChange={(e) => setEditTaskText(e.target.value)}
-                onBlur={() => saveEdit(task.id)}
-                autoFocus
-              />
-            ) : (
-              <>
-                {task.text}
-                <button onClick={() => handleDelete(task.id)}> Eliminar </button>
-              </>
-            )}
-          </li>
+          <TaskItem 
+            key={task.id}
+            task={task}
+            editTaskId={editTaskId}
+            editTaskText={editTaskText}
+            setEditTaskText={setEditTaskText}
+            editTask={editTask}
+            saveEdit={saveEdit}
+            handleDelete={handleDelete}
+          />
         ))}
       </ul>
     </div>
