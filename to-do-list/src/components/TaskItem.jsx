@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import "../styles/TaskItem.css";
 
 function TaskItem({
   task,
@@ -11,8 +12,8 @@ function TaskItem({
   handleDelete
 }) {
   return (
-    
-      <li key={task.id} onDoubleClick={() => editTask(task)}>
+    <div className="task-wrapper">
+      <li key={task.id} className="task-item" onDoubleClick={() => editTask(task)}>
         {editTaskId === task.id ? (
           <input
             value={editTaskText}
@@ -23,11 +24,11 @@ function TaskItem({
         ) : (
           <>
             {task.text}
-            <button onClick={() => handleDelete(task.id)}> Eliminar </button>
+            <button className="delete-button" onClick={() => handleDelete(task.id)}> Eliminar </button>
           </>
         )}
       </li>
-    
+    </div>
   );
 }
 

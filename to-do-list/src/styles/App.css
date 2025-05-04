@@ -1,0 +1,40 @@
+body {
+    background-color: #343d46;
+}
+
+h1 {
+    color: white;
+    text-align: center;
+    font-size: 2.5em;
+}
+
+button, input {
+    color: rgb(0, 0, 0);
+    text-align: center;
+    display: block;
+    margin: 0 auto;
+    margin-bottom: 10px;
+}
+
+ul {
+    display: table;
+    margin: 0 auto;
+}
+
+.input-task {
+    background-color: #ffffff;
+    border-radius: 8px;
+    padding: 5px;
+    display: flex;
+    align-items: center;
+    margin: 10px auto;
+    width: 250px;
+    box-shadow: none;
+    border: 1px solid #ccc;
+    
+}
+
+.input-task::placeholder {
+    color: #999; /* o el color que quieras */
+    font-style: italic; /* opcional */
+  }

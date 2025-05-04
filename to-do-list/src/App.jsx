@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import React from 'react';
+import './styles/App.css';
 import TaskItem from './components/TaskItem';
 
 //Creamos la funcion App, que es la funcion principal de la aplicacion
@@ -57,10 +58,10 @@ function App() {
 
   return (
     <div className="app-container">
-      <h1>Mi To-Do List</h1>
-      <input 
+      <h1>My To-Do List</h1>
+      <input className="input-task" 
         type="text" 
-        placeholder="Escribe una tarea"
+        placeholder="Add a new task"
         value={task}
         onChange={(e) => setTask(e.target.value)}
       />

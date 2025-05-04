@@ -1,0 +1,48 @@
+
+.task-item {
+    font-size: 16px;
+    color: white;
+    font-family: monospace;
+    padding: 12px;
+    display: flex;
+    align-items: center;
+    transition: background 0.2s ease;
+    cursor: pointer;
+    flex: 1;
+    gap: 60px;
+}
+
+.task-wrapper {
+    background-color: #4a5568;
+    border-radius: 8px;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 10px;
+    width: 500px;
+}
+
+.delete-button {
+    background-color: transparent;
+    color: white;
+    border: 1px solid white;
+    border-radius: 4px; 
+    cursor: pointer;
+    transition: background 0.2s ease;
+    font-family: monospace;
+    font-size: 16px;
+    line-height: 1;
+    height:auto;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+    justify-content: space-between;
+    margin-right: 10px;
+
+}
+
+.delete-button:hover {
+    background-color: #5526ff;
+}
